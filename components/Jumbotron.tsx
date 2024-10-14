@@ -5,13 +5,6 @@ function Jumbotron() {
   return (
     <section className="jumbotron w-full px-4 py-8 bg-[#350203] flex justify-center items-center">
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-2">
-          <h3 className={`${poppinsMed.className} text-[#f8d6b6] text-3xl`}>
-            How Magneto works
-          </h3>
-          <div className="border-2 border-[#f8d6b6] w-28"></div>
-        </div>
-
         <div className="grid grid-cols-1 gap-8">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 text-[#f8d6b6]">

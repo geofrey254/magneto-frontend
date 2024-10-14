@@ -19,8 +19,7 @@ function Hero() {
           </h2>
           <p className="texty font-semibold">
             Access quality high school learning materials at an affordable daily
-            fee of Kes.40, tailored to the Kenyan curriculum. Study anytime,
-            anywhere.
+            fee, tailored to the Kenyan curriculum. Study anytime, anywhere.
           </p>
           <div className="flex justify-between items-center mt-8 gap-6">
             <Link
