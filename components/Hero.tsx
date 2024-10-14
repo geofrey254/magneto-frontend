@@ -7,7 +7,7 @@ import { FaCertificate } from "react-icons/fa6";
 
 function Hero() {
   return (
-    <section className="hero w-full max-w-full p-4 md:p-0">
+    <section className="hero w-full max-w-full px-4 py-8 md:p-0">
       <div className="container grid grid-cols-4">
         <div className="col-span-3 flex flex-col gap-6">
           <h2 className="text-6xl font-bold texty">
