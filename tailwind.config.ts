@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,6 +11,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        Montserrat: ["Montserrat", "serif"],
+        Poppins: ["Poppins", "sans-serif"],
+      },
       colors: {
         text: "hsl(var(--texty))",
         background: "hsl(var(--background))",

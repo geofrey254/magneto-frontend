@@ -5,10 +5,10 @@ import { FaCertificate } from "react-icons/fa6";
 
 function Navbar() {
   return (
-    <nav className="h-[4vh] w-full flex items-center p-8">
+    <nav className="h-[4vh] w-full flex items-center py-8 px-4">
       <div className="container flex justify-between items-center">
         <div>
-          <h4 className="font-bold text-3xl texty text-[#350203] flex">
+          <h4 className="font-bold text-3xl texty  flex">
             Magneto <FaCertificate className="text-[#350203]" size={20} />
           </h4>
         </div>
@@ -22,7 +22,7 @@ function Navbar() {
           </ul>
         </div>
         <div>
-          <BiSolidFoodMenu size={30} className="texty" />
+          <BiSolidFoodMenu size={30} className="text-[#350203]" />
         </div>
       </div>
     </nav>

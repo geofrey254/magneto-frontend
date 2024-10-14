@@ -1,5 +1,4 @@
 import React from "react";
-import { poppinsMed } from "@/app/layout";
 
 function Jumbotron() {
   return (
@@ -33,7 +32,7 @@ function Jumbotron() {
             </div>
             <p className="text-white/65 text-sm leading-7">
               Browse through a wide range of subjects and materials including
-              video lessons, notes, and quizzes – all designed to help you
+              video lessons, notes, and quizzes {"-"} all designed to help you
               excel.
             </p>
           </div>
