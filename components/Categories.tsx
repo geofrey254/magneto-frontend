@@ -1,24 +1,11 @@
 "use client";
 import React from "react";
-import { SlChemistry } from "react-icons/sl";
-import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
 import { FaCertificate } from "react-icons/fa6";
 
 function Categories() {
-  const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  );
   return (
     <section className="bg-[#f9eeea] jumbotron w-full p-4 flex justify-center items-center">
       <div className="flex flex-col gap-6 justify-center items-center mt-8">
