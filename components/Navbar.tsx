@@ -1,27 +1,40 @@
 "use client";
 import React, { useState } from "react";
-import { MdOutlineMenuBook } from "react-icons/md";
-import { BiSolidFoodMenu } from "react-icons/bi";
-import { FaCertificate } from "react-icons/fa6";
-import Link from "next/link";
+import {
+  MdOutlineMenuBook,
+  MdOutlinePriceCheck,
+  MdNotes,
+  MdContactPage,
+} from "react-icons/md"; // Importing Material Design icons for use in the navbar
+import { BiSolidFoodMenu } from "react-icons/bi"; // Importing another icon for mobile menu
+import { FaCertificate } from "react-icons/fa6"; // Importing FontAwesome icon for certificate symbol
+import { FaSchool } from "react-icons/fa6"; // Importing FontAwesome icon for school symbol
+
+import Link from "next/link"; // Importing Next.js Link component for navigation between pages
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // State for controlling the mobile menu's visibility
 
+  // Toggles the menu state between open and closed
   const handleNav = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
     <nav className="h-[4vh] w-full flex justify-center items-center py-8 px-4 md:px-12">
+      {/* Container for Navbar content */}
       <div className="container flex justify-between items-center">
+        {/* Branding Section */}
         <div>
           <h4 className="font-bold text-3xl text-[#350203] flex">
             Magneto <FaCertificate className="text-[#350203]" size={20} />
           </h4>
         </div>
+
+        {/* Desktop Menu: Hidden on mobile (md:hidden) */}
         <div className="hidden md:flex">
           <ul className="flex gap-8 2xl:gap-12 items-center text-[#350203] font-bold">
+            {/* Links for various sections of the website */}
             <li>
               <Link href="#">Home</Link>
             </li>
@@ -39,7 +52,8 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        {/* mobile menu */}
+
+        {/* Mobile Menu (hamburger) */}
         <div
           className={
             menuOpen
@@ -47,25 +61,61 @@ function Navbar() {
               : "fixed mobile_nav w-[90%] left-4 top-16 h-[100%] z-10 transition-all duration-700 ease-linear rounded-3xl shadow-xl shadow-[#8a6445] md:hidden"
           }
         >
-          <ul className="flex flex-col gap-y-16 mt-24 justify-center text-white font-semibold">
-            <li>
+          {/* Buttons for Login and Signup */}
+          <div className="flex flex-col gap-6 text-[#f8d6b6]">
+            <ul className="flex mt-6 px-4 justify-between">
+              <li>
+                <Link
+                  href="#"
+                  className="text-[#f8d6b6] border-2 border-[#f8d6b6] px-8 py-2 rounded-2xl"
+                >
+                  Log In
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
+                >
+                  Join Now
+                </Link>
+              </li>
+            </ul>
+            <hr /> {/* Divider */}
+          </div>
+
+          {/* Mobile Navigation Links */}
+          <ul className="flex flex-col text-lg gap-y-20 mt-8 p-4 text-[#f8d6b6] font-semibold">
+            <li className="flex gap-4 justify-start items-center">
+              <div className="bg-[#f8d6b6] rounded-full p-2">
+                <FaSchool size={15} className="text-[#350203]" />
+              </div>
               <Link href="#">Home</Link>
             </li>
-            <li>
-              <Link href="#">Subjects</Link>
-            </li>
-            <li>
+            <li className="flex gap-4 items-center">
+              <div className="bg-[#f8d6b6] rounded-full p-2">
+                <MdOutlinePriceCheck size={15} className="text-[#350203]" />
+              </div>
               <Link href="#">Pricing</Link>
             </li>
-            <li>
+            <li className="flex gap-4 items-center">
+              <div className="bg-[#f8d6b6] rounded-full p-2">
+                <MdNotes size={15} className="text-[#350203]" />
+              </div>
               <Link href="#">About Us</Link>
             </li>
-            <li>
+            <li className="flex gap-4 items-center">
+              <div className="bg-[#f8d6b6] rounded-full p-2">
+                <MdContactPage size={15} className="text-[#350203]" />
+              </div>
               <Link href="#">Contact Us</Link>
             </li>
           </ul>
         </div>
+
+        {/* Right side of the Navbar */}
         <div className="flex">
+          {/* Desktop Login/Join buttons */}
           <div className="hidden md:flex gap-6 justify-center items-center font-semibold">
             <Link href="#" className="text-[#350203]">
               Log In
@@ -77,6 +127,8 @@ function Navbar() {
               Join Now
             </Link>
           </div>
+
+          {/* Mobile Hamburger Menu Toggle */}
           <div className="mobile-menu md:hidden">
             <BiSolidFoodMenu
               size={30}
@@ -85,7 +137,7 @@ function Navbar() {
                   ? "text-[#350203] cursor-pointer transition-all duration-700 ease-in-out"
                   : "hidden transition-all duration-700 ease-in-out"
               }
-              onClick={handleNav}
+              onClick={handleNav} // Closes menu when clicked
             />
             <MdOutlineMenuBook
               size={30}
@@ -94,7 +146,7 @@ function Navbar() {
                   ? "text-[#350203] cursor-pointer transition-all duration-700 ease-in-out"
                   : "hidden transition-all duration-700 ease-in-out"
               }
-              onClick={handleNav}
+              onClick={handleNav} // Opens menu when clicked
             />
           </div>
         </div>

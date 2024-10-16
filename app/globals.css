@@ -43,7 +43,7 @@ body {
 
 
 .mobile_nav {
-  background: rgba(53, 2, 3, 0.45);
+  background: rgba(53, 2, 3, 0.7);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
