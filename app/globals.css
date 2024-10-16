@@ -41,6 +41,16 @@ body {
   -webkit-text-stroke-color: black;
 }
 
+
+.mobile_nav {
+  background: rgba(53, 2, 3, 0.45);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 @keyframes rota {
   to {
     transform: rotate(180deg);
@@ -62,4 +72,55 @@ body {
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hero_image {
+  border-radius: 0px 200px 0px 0px;
+}
+
+.hero_image_2 {
+  border-radius: 0px 0px 0px 200px;
+}
+
+@keyframes jumpy {
+  0% {
+    top: 500px;
+    left: 0px
+  }
+
+  50% {
+    top: 450px;
+    left: 50px
+  }
+
+  100% {
+    top: 500px;
+    left: 0px
+  }
+}
+
+@keyframes jumpy2 {
+  0% {
+    top: 0px;
+
+  }
+
+  50% {
+    top: 50px;
+
+  }
+
+  100% {
+    top: 0px;
+  }
+}
+
+.circle {
+  border-radius: 100%;
+  animation: jumpy 2s infinite linear;
+}
+
+.circle2 {
+  border-radius: 100%;
+  animation: jumpy2 4s infinite ease-in-out;
 }
