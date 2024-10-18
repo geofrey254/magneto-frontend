@@ -1,41 +1,26 @@
 import React from "react";
+import Link from "next/link";
 
 function Jumbotron() {
   return (
-    <section className="jumbotron w-full px-4 py-8 bg-[#350203] flex justify-center items-center">
-      <div className="flex flex-col gap-8">
-        <div className="grid grid-cols-1 gap-8">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2 text-[#f8d6b6]">
-              <h4 className="text-2xl">1</h4>
-              <h4 className="text-md ">Sign Up for Free</h4>
-            </div>
-            <p className="text-white/65 text-sm leading-7">
-              Create an account to get started. It{"'"}s quick, easy, and free
-              to sign up.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2 text-[#f8d6b6]">
-              <h4 className="text-2xl">2</h4>
-              <h4 className="text-md">Pay a Small Daily Fee</h4>
-            </div>
-            <p className="text-white/65 text-sm leading-7">
-              To access our premium learning content, pay a small daily fee of
-              Kes 40 using your preferred payment method.
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2 text-[#f8d6b6]">
-              <h4 className="text-2xl">3</h4>
-              <h4 className="text-md">Access High-Quality Content</h4>
-            </div>
-            <p className="text-white/65 text-sm leading-7">
-              Browse through a wide range of subjects and materials including
-              video lessons, notes, and quizzes {"-"} all designed to help you
-              excel.
-            </p>
-          </div>
+    <section className="bg-[#350203] w-full dark:bg-gray-900">
+      <div className="py-8 px-4 mx-auto max-w-screen-xl md:text-center lg:py-16">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-[#f8d6b6] md:text-5xl lg:text-6xl dark:text-white">
+          Empowering Students Across Kenya
+        </h1>
+        <p className="mb-8  font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
+          At Magneto, we believe every student deserves access to affordable,
+          high-quality educational resources. Our platform is designed to
+          provide students with the tools they need to succeed, from exam
+          preparation to personalized learning paths.
+        </p>
+        <div className="flex flex-col justify-center md:items-center space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+          <Link
+            href="#"
+            className="py-3 px-5 sm:ms-4 text-sm font-medium text-[#350203] bg-[#f8d6b6] border rounded-2xl w-1/3 md:w-auto text-center"
+          >
+            Learn more
+          </Link>
         </div>
       </div>
     </section>

@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "type":"module",
+  
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-slot": "^1.1.0",

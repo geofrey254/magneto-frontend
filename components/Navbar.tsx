@@ -13,7 +13,7 @@ import { FaSchool } from "react-icons/fa6"; // Importing FontAwesome icon for sc
 import Link from "next/link"; // Importing Next.js Link component for navigation between pages
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false); // State for controlling the mobile menu's visibility
+  const [menuOpen, setMenuOpen] = useState(true); // State for controlling the mobile menu's visibility
 
   // Toggles the menu state between open and closed
   const handleNav = () => {
@@ -129,7 +129,7 @@ function Navbar() {
           </div>
 
           {/* Mobile Hamburger Menu Toggle */}
-          <div className="mobile-menu md:hidden">
+          <div className="mobile-menu md:hidden" onClick={handleNav}>
             <BiSolidFoodMenu
               size={30}
               className={
@@ -137,7 +137,7 @@ function Navbar() {
                   ? "text-[#350203] cursor-pointer transition-all duration-700 ease-in-out"
                   : "hidden transition-all duration-700 ease-in-out"
               }
-              onClick={handleNav} // Closes menu when clicked
+              // Closes menu when clicked
             />
             <MdOutlineMenuBook
               size={30}
@@ -146,7 +146,6 @@ function Navbar() {
                   ? "text-[#350203] cursor-pointer transition-all duration-700 ease-in-out"
                   : "hidden transition-all duration-700 ease-in-out"
               }
-              onClick={handleNav} // Opens menu when clicked
             />
           </div>
         </div>

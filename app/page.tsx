@@ -3,6 +3,8 @@ import Jumbotron from "@/components/Jumbotron";
 import Categories from "@/components/Categories";
 import Why from "@/components/Why";
 import Download from "@/components/Download";
+import Pricing from "@/components/Pricing";
+import Accordion from "@/components/Accordion";
 
 export default function Home() {
   return (
@@ -11,6 +13,8 @@ export default function Home() {
       <Jumbotron />
       <Categories />
       <Why />
+      <Pricing />
+      <Accordion />
       <Download />
     </main>
   );
