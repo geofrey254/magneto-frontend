@@ -14,8 +14,8 @@ export default function Home() {
       <Categories />
       <Why />
       <Pricing />
-      <Accordion />
       <Download />
+      <Accordion />
     </main>
   );
 }

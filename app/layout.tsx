@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Magneto - Unlock Learning, One Day at a Time",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body className="font-Poppins font-medium">
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

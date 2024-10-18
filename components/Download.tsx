@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Download() {
   return (
-    <section className="w-full download px-4 md:p-8 flex justify-center items-center text-[#350203]">
+    <section className="w-full px-4 py-4 md:py-14 md:px-8 flex justify-center items-center text-[#350203]">
       <div className="container flex flex-col justify-center items-center">
         <div className="flex flex-col text-center gap-3">
           <h3 className="text-lg">Ready to start ?</h3>
@@ -19,7 +19,7 @@ function Download() {
               width={300}
               height={150}
               alt="google play"
-              className="w-32 md:w-72"
+              className="w-32 md:w-62 lg:w-64"
             />
           </Link>
           <Link href="#">
@@ -28,7 +28,7 @@ function Download() {
               width={300}
               height={150}
               alt="App Store"
-              className="w-28 md:w-64"
+              className="w-28 md:w-54 lg:w-56"
             />
           </Link>
         </div>

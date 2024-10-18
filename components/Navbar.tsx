@@ -36,10 +36,10 @@ function Navbar() {
           <ul className="flex gap-8 2xl:gap-12 items-center text-[#350203] font-bold">
             {/* Links for various sections of the website */}
             <li>
-              <Link href="#">Home</Link>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <Link href="#">Subjects</Link>
+              <Link href="/subjects">Subjects</Link>
             </li>
             <li>
               <Link href="#">Pricing</Link>
