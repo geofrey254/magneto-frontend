@@ -6,6 +6,7 @@
 
 body {
   background: var(--main);
+  color: #350203
 }
 
 @layer utilities {

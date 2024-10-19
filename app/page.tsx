@@ -5,6 +5,7 @@ import Why from "@/components/Why";
 import Download from "@/components/Download";
 import Pricing from "@/components/Pricing";
 import Accordion from "@/components/Accordion";
+import Lessons from "@/components/Lessons";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <Jumbotron />
       <Categories />
+      <Lessons />
       <Why />
       <Pricing />
       <Download />

@@ -9,6 +9,7 @@ import {
 import { BiSolidFoodMenu } from "react-icons/bi"; // Importing another icon for mobile menu
 import { FaCertificate } from "react-icons/fa6"; // Importing FontAwesome icon for certificate symbol
 import { FaSchool } from "react-icons/fa6"; // Importing FontAwesome icon for school symbol
+import { TbBooks } from "react-icons/tb";
 
 import Link from "next/link"; // Importing Next.js Link component for navigation between pages
 
@@ -26,9 +27,11 @@ function Navbar() {
       <div className="container flex justify-between items-center">
         {/* Branding Section */}
         <div>
-          <h4 className="font-bold text-3xl text-[#350203] flex">
-            Magneto <FaCertificate className="text-[#350203]" size={20} />
-          </h4>
+          <Link href="/">
+            <h4 className="font-bold text-3xl text-[#350203] flex">
+              Magneto <FaCertificate className="text-[#350203]" size={20} />
+            </h4>
+          </Link>
         </div>
 
         {/* Desktop Menu: Hidden on mobile (md:hidden) */}
@@ -40,6 +43,9 @@ function Navbar() {
             </li>
             <li>
               <Link href="/subjects">Subjects</Link>
+            </li>
+            <li>
+              <Link href="/Lessons">Lessons</Link>
             </li>
             <li>
               <Link href="#">Pricing</Link>
@@ -85,12 +91,24 @@ function Navbar() {
           </div>
 
           {/* Mobile Navigation Links */}
-          <ul className="flex flex-col text-lg gap-y-20 mt-8 p-4 text-[#f8d6b6] font-semibold">
+          <ul className="flex flex-col text-lg gap-y-14 mt-8 p-4 text-[#f8d6b6] font-semibold">
             <li className="flex gap-4 justify-start items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <FaSchool size={15} className="text-[#350203]" />
               </div>
-              <Link href="#">Home</Link>
+              <Link href="/">Home</Link>
+            </li>
+            <li className="flex gap-4 items-center">
+              <div className="bg-[#f8d6b6] rounded-full p-2">
+                <TbBooks size={15} className="text-[#350203]" />
+              </div>
+              <Link href="/subjects">Subjects</Link>
+            </li>
+            <li className="flex gap-4 items-center">
+              <div className="bg-[#f8d6b6] rounded-full p-2">
+                <TbBooks size={15} className="text-[#350203]" />
+              </div>
+              <Link href="/Lessons">Lessons</Link>
             </li>
             <li className="flex gap-4 items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
