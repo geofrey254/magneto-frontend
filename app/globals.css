@@ -125,3 +125,12 @@ body {
   border-radius: 100%;
   animation: jumpy2 4s infinite ease-in-out;
 }
+
+.login_head {
+  width: 100%;
+  background: url(/img/login.jpg), linear-gradient(to right, #393929, #000000c0) center no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  background-size: cover;
+}
