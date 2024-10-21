@@ -5,7 +5,7 @@ import Link from "next/link";
 import Skeleton from "@/components/Skeleton";
 
 export function Subjects() {
-  const [subjects, setSubjects] = useState<any>([]);
+  const [subjects, setSubjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -67,7 +67,7 @@ export function Subjects() {
 
                   <div className="rounded">
                     <Link
-                      href="#"
+                      href={`/subjects/${sub.slug}`}
                       className="bg-[#350203] rounded-2xl px-4 py-1 text-xs text-[#f8d6b6] text-center"
                     >
                       Start

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  BlocksRenderer,
-  type BlocksContent,
-} from "@strapi/blocks-react-renderer";
-import Link from "next/link";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 
 // Fetch all chapter slugs for static paths generation
 export async function generateStaticParams() {
@@ -16,7 +12,7 @@ export async function generateStaticParams() {
 }
 
 // Lesson Page Component
-async function LessonPage({ params }: { params: any }) {
+async function LessonPage({ params }) {
   const { slug } = params; // Get slug from URL params
 
   // Fetch the chapter data for the given slug
@@ -32,11 +28,11 @@ async function LessonPage({ params }: { params: any }) {
   }
 
   return (
-    <section className="mx-auto bg-[#350203] w-full flex flex-col justify-center items-center">
-      <div className="bg-[#350203] w-full h-[20vh] flex justify-center items-center text-center">
+    <section className="mx-auto bg-[#350203] w-full flex flex-col justify-center items-center p-8 md:p-0 md:py-4">
+      <div className="bg-[#350203] w-full h-[20vh] flex justify-center items-center">
         <h2 className="text-white text-5xl font-bold">{lesson.title}</h2>
       </div>
-      <div className="prose prose-img:w-1/2 flex flex-col justify-center prose-zinc mt-8 text-[#ffebd7]">
+      <div className="prose prose-img:w-1/2 prose-headings:text-white prose-strong:text-white flex flex-col justify-center prose-zinc text-[#ffebd7]">
         <BlocksRenderer content={lesson.content} />
       </div>
     </section>

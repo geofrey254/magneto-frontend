@@ -96,37 +96,49 @@ function Navbar() {
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <FaSchool size={15} className="text-[#350203]" />
               </div>
-              <Link href="/">Home</Link>
+              <Link href="/" onClick={handleNav}>
+                Home
+              </Link>
             </li>
             <li className="flex gap-4 items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <TbBooks size={15} className="text-[#350203]" />
               </div>
-              <Link href="/subjects">Subjects</Link>
+              <Link href="/subjects" onClick={handleNav}>
+                Subjects
+              </Link>
             </li>
             <li className="flex gap-4 items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <TbBooks size={15} className="text-[#350203]" />
               </div>
-              <Link href="/Lessons">Lessons</Link>
+              <Link href="/Lessons" onClick={handleNav}>
+                Lessons
+              </Link>
             </li>
             <li className="flex gap-4 items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <MdOutlinePriceCheck size={15} className="text-[#350203]" />
               </div>
-              <Link href="#">Pricing</Link>
+              <Link href="#" onClick={handleNav}>
+                Pricing
+              </Link>
             </li>
             <li className="flex gap-4 items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <MdNotes size={15} className="text-[#350203]" />
               </div>
-              <Link href="#">About Us</Link>
+              <Link href="#" onClick={handleNav}>
+                About Us
+              </Link>
             </li>
             <li className="flex gap-4 items-center">
               <div className="bg-[#f8d6b6] rounded-full p-2">
                 <MdContactPage size={15} className="text-[#350203]" />
               </div>
-              <Link href="#">Contact Us</Link>
+              <Link href="#" onClick={handleNav}>
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>

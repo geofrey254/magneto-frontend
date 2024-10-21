@@ -34,7 +34,7 @@ function Hero() {
               Start Learning Today
             </Link>
             <Link
-              href="/"
+              href="#subjects"
               className="texty text-nowrap p-3 flex gap-2 items-center border border-[#f8d6b6] rounded-xl md:text-xl"
             >
               <SiBookstack size={20} className="text-[#350203]" />
