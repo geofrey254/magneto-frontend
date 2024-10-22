@@ -73,6 +73,7 @@ function Navbar() {
               <li>
                 <Link
                   href="http://localhost:1337/api/connect/google"
+                  onClick={handleNav}
                   className="text-[#f8d6b6] border-2 border-[#f8d6b6] px-8 py-2 rounded-2xl"
                 >
                   Log In
@@ -80,7 +81,8 @@ function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/User"
+                  href="/auth"
+                  onClick={handleNav}
                   className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
                 >
                   Join Now
@@ -147,14 +149,11 @@ function Navbar() {
         <div className="flex">
           {/* Desktop Login/Join buttons */}
           <div className="hidden md:flex gap-6 justify-center items-center font-semibold">
-            <Link
-              href="http://localhost:1337/api/connect/google"
-              className="text-[#350203]"
-            >
+            <Link href="/signin" className="text-[#350203]">
               Log In
             </Link>
             <Link
-              href="/User"
+              href="/signup"
               className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
             >
               Join Now
