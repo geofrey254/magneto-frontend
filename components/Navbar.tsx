@@ -12,6 +12,8 @@ import { FaSchool } from "react-icons/fa6"; // Importing FontAwesome icon for sc
 import { TbBooks } from "react-icons/tb";
 
 import Link from "next/link"; // Importing Next.js Link component for navigation between pages
+import { useSession } from "next-auth/react";
+import { LogoutButton } from "./custom/logout-button";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(true); // State for controlling the mobile menu's visibility
@@ -20,6 +22,9 @@ function Navbar() {
   const handleNav = () => {
     setMenuOpen(!menuOpen);
   };
+
+  // Correctly invoke useSession to get session data
+  const { data: session } = useSession();
 
   return (
     <nav className="h-[4vh] w-full flex justify-center items-center py-8 px-4 md:px-12">
@@ -69,26 +74,30 @@ function Navbar() {
         >
           {/* Buttons for Login and Signup */}
           <div className="flex flex-col gap-6 text-[#f8d6b6]">
-            <ul className="flex mt-6 px-4 justify-between">
-              <li>
-                <Link
-                  href="http://localhost:1337/api/connect/google"
-                  onClick={handleNav}
-                  className="text-[#f8d6b6] border-2 border-[#f8d6b6] px-8 py-2 rounded-2xl"
-                >
-                  Log In
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/auth"
-                  onClick={handleNav}
-                  className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
-                >
-                  Join Now
-                </Link>
-              </li>
-            </ul>
+            {session && session.user ? (
+              <LogoutButton />
+            ) : (
+              <ul className="flex mt-6 px-4 justify-between">
+                <li>
+                  <Link
+                    href="http://localhost:1337/api/connect/google"
+                    onClick={handleNav}
+                    className="text-[#f8d6b6] border-2 border-[#f8d6b6] px-8 py-2 rounded-2xl"
+                  >
+                    Log In
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/auth"
+                    onClick={handleNav}
+                    className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
+                  >
+                    Join Now
+                  </Link>
+                </li>
+              </ul>
+            )}
             <hr /> {/* Divider */}
           </div>
 
@@ -149,15 +158,21 @@ function Navbar() {
         <div className="flex">
           {/* Desktop Login/Join buttons */}
           <div className="hidden md:flex gap-6 justify-center items-center font-semibold">
-            <Link href="/signin" className="text-[#350203]">
-              Log In
-            </Link>
-            <Link
-              href="/signup"
-              className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
-            >
-              Join Now
-            </Link>
+            {session && session.user ? (
+              <LogoutButton />
+            ) : (
+              <>
+                <Link href="/signin" className="text-[#350203]">
+                  Log In
+                </Link>
+                <Link
+                  href="/signup"
+                  className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
+                >
+                  Join Now
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Hamburger Menu Toggle */}
@@ -169,7 +184,6 @@ function Navbar() {
                   ? "text-[#350203] cursor-pointer transition-all duration-700 ease-in-out"
                   : "hidden transition-all duration-700 ease-in-out"
               }
-              // Closes menu when clicked
             />
             <MdOutlineMenuBook
               size={30}

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import { loginUserAction } from "@/app/Data/actions/auth-actions";
-
 import {
   CardTitle,
   CardDescription,
@@ -18,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { ZodErrors } from "@/components/custom/zod-errors";
 import { StrapiErrors } from "@/components/custom/strapi-errors";
 import { SubmitButton } from "@/components/custom/submit-button";
+import GoogleSignInButton from "../custom/Googlebtn";
 
 const INITIAL_STATE = {
   zodErrors: null,
@@ -67,10 +67,8 @@ export function SigninForm() {
               loadingText="Loading"
             />
             <StrapiErrors error={formState?.strapiErrors} />
-            <div>
-              <Link href="http://localhost:1337/api/connect/google/callback">
-                Google
-              </Link>
+            <div className="p-8">
+              <GoogleSignInButton />
             </div>
           </CardFooter>
         </Card>

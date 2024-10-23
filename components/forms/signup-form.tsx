@@ -19,6 +19,8 @@ import { Input } from "@/components/ui/input";
 import { ZodErrors } from "@/components/custom/zod-errors";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // Import eye icons
 
+import GoogleSignInButton from "../custom/Googlebtn";
+
 const INITIAL_STATE = {
   data: null,
 };
@@ -98,6 +100,9 @@ export function SignupForm() {
               loadingText="Loading"
             />
             <StrapiErrors error={formState?.strapiErrors} />
+            <div className="p-8">
+              <GoogleSignInButton />
+            </div>
           </CardFooter>
         </Card>
         <div className="mt-4 text-center text-sm">

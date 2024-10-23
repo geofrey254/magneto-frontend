@@ -1,4 +1,20 @@
 "use server"; // Specifies that the file contains server-side actions
+/**
+ * This code provides server-side actions for user authentication in a Next.js application.
+ * It includes functions for registering, logging in, and logging out users using the Strapi backend API.
+ *
+ * Key Features:
+ * - **Zod validation**: Ensures the input data (such as username, password, and email) meets the required format.
+ * - **User registration**: The `registerUserAction` function validates form data, attempts to register the user through a service,
+ *   and manages errors if registration fails. On success, it sets a JWT cookie and redirects the user to the dashboard.
+ * - **User login**: The `loginUserAction` function validates login form data, attempts to log in the user, and handles errors
+ *   appropriately. If login is successful, it sets a JWT cookie and redirects to the dashboard.
+ * - **Logout action**: The `logoutAction` function clears the JWT cookie and redirects the user to the homepage.
+ * - **Cookie management**: A secure JWT cookie is set upon successful registration or login, with configuration settings that ensure
+ *   cookies are HTTP-only and secured in production environments.
+ * - **Redirection**: After successful login or registration, users are redirected to the dashboard, and after logout, they are redirected
+ *   to the homepage.
+ */
 
 import { z } from "zod"; // Importing Zod library for schema validation
 import { cookies } from "next/headers"; // Importing Next.js' cookies API for handling cookies

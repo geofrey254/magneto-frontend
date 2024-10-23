@@ -1,12 +1,16 @@
-import { logoutAction } from "@/app/Data/actions/auth-actions";
+"use client";
+
 import { LogOut } from "lucide-react";
+import { signOut } from "next-auth/react"; // Import NextAuth signOut
 
 export function LogoutButton() {
+  const handleLogout = async () => {
+    await signOut(); // For NextAuth logouts, it automatically handles session and redirection
+  };
+
   return (
-    <form action={logoutAction}>
-      <button type="submit">
-        <LogOut className="w-6 h-6 hover:text-primary" />
-      </button>
-    </form>
+    <button type="button" onClick={handleLogout}>
+      <LogOut className="w-6 h-6 hover:text-primary" />
+    </button>
   );
 }
