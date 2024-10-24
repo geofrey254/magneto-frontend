@@ -1,36 +1,12 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { getUserMeLoader } from "./app/Data/services/get-user-me-loader";
+import { withAuth } from "next-auth/middleware";
 
-// Define an array of protected routes
-const protectedRoutes = ["/dashboard", "/Lessons", "/subjects"];
+export default withAuth({
+  callbacks: {
+    authorized: ({ token }) => !!token, // Check if the user is authenticated
+  },
+});
 
-// Helper function to check if a path is protected
-function isProtectedRoute(path: string): boolean {
-  return protectedRoutes.some((route) => path.startsWith(route));
-}
-
-export async function middleware(request: NextRequest) {
-  const user = await getUserMeLoader();
-  const currentPath = request.nextUrl.pathname;
-
-  if (isProtectedRoute(currentPath) && user.ok === false) {
-    return NextResponse.redirect(new URL("/signin", request.url));
-  }
-
-  return NextResponse.next();
-}
-
-// Optionally, you can add a matcher to optimize performance
+// Specify which routes to protect
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/Lessons/:path*", "/subjects/:path*"], // Protect all paths under /Lessons and /Subjects
 };

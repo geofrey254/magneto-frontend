@@ -2,10 +2,9 @@ import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   // Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-
   interface Session {
     strapiToken?: string;
-    provider?: "google" | "local";
+    provider?: "google" | "local" | "credentials"; // Added "credentials"
     user: User;
   }
 
@@ -16,6 +15,7 @@ declare module "next-auth" {
   interface User extends DefaultSession["user"] {
     // not setting this will throw ts error in authorize function
     strapiUserId?: number;
+    strapiToken?: string;
     blocked?: boolean;
   }
 }
@@ -26,6 +26,6 @@ declare module "next-auth/jwt" {
     strapiUserId?: number;
     blocked?: boolean;
     strapiToken?: string;
-    provider?: "local" | "google";
+    provider?: "local" | "google" | "credentials"; // Added "credentials"
   }
 }
