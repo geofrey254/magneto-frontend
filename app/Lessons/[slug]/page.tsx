@@ -1,9 +1,13 @@
 import React from "react";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+import Link from "next/link"; // Assuming you're using Next.js for routing
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Fetch all chapter slugs for static paths generation
 export async function generateStaticParams() {
-  const res = await fetch("http://localhost:1337/api/chapters?populate=*");
+  const res = await fetch("http://localhost:1337/api/chapters?populate=*", {
+    next: { revalidate: 1 },
+  });
   const data = await res.json();
 
   return data.data.map((lesson) => ({
@@ -17,7 +21,10 @@ async function LessonPage({ params }) {
 
   // Fetch the chapter data for the given slug
   const res = await fetch(
-    `http://localhost:1337/api/chapters?filters[slug][$eq]=${slug}&populate=*`
+    `http://localhost:1337/api/chapters?filters[slug][$eq]=${slug}&populate=*`,
+    {
+      next: { revalidate: 1 },
+    }
   );
   const data = await res.json();
   const lesson = data.data[0]; // Assuming you fetch one chapter based on the slug
@@ -28,12 +35,41 @@ async function LessonPage({ params }) {
   }
 
   return (
-    <section className="mx-auto bg-[#350203] w-full flex flex-col justify-center items-center p-8 md:p-0 md:py-4">
-      <div className="bg-[#350203] w-full h-[20vh] flex justify-center items-center">
-        <h2 className="text-white text-5xl font-bold">{lesson.title}</h2>
+    <section className="mx-auto bg-[#f8d6b6] w-full flex flex-col justify-center items-center p-8 md:p-0 md:py-4">
+      {/* Breadcrumb Navigation */}
+      <div>
+        <nav className="w-full max-w-4xl text-sm mb-4  text-[#350203] rounded-xl p-2 ">
+          <Link href="/" className="hover:underline">
+            Home
+          </Link>
+          <span className="mx-2">/</span>
+          <Link href="/Lessons" className="hover:underline">
+            Go back
+          </Link>
+          <span className="mx-2">/</span>
+          <span>{lesson.title}</span>
+        </nav>
       </div>
-      <div className="prose prose-img:w-1/2 prose-headings:text-white prose-strong:text-white flex flex-col justify-center prose-zinc text-[#ffebd7]">
-        <BlocksRenderer content={lesson.content} />
+      <div className="grid grid-cols-12">
+        {" "}
+        <div className="col-span-8">
+          {/* Lesson Overview */}
+          <div className=" w-full max-w-4xl p-4 mb-6">
+            <h2 className="text-[#350203] text-5xl font-bold mb-2">
+              Lesson Overview
+            </h2>
+            {lesson.description && (
+              <p className="text-[#350203] text-lg">{lesson.description}</p>
+            )}
+          </div>
+
+          {/* Lesson Content */}
+          <div className="text-[#350203] p-4 prose prose-lg prose-img:w-1/2 prose-p:text-[#350203]prose-headings:text-[#350203] prose-strong:text-[#350203] prose-zinc">
+            <BlocksRenderer content={lesson.content} />
+          </div>
+        </div>
+        <div className="col-span-2"></div>
+        <div className="bg-black col-span-2"></div>
       </div>
     </section>
   );

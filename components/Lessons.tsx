@@ -1,3 +1,4 @@
+// Lessons.js
 import React from "react";
 import { FaCertificate } from "react-icons/fa6";
 import Chapters from "@/app/Data/Chapters";
@@ -12,7 +13,7 @@ function Lessons() {
         </h4>
         <h4 className={`font-bold text-center text-4xl`}>Go to Chapters</h4>
         <div className="">
-          <Chapters />
+          <Chapters limit={3} /> {/* Pass the limit prop here */}
         </div>
       </div>
     </section>

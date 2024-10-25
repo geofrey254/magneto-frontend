@@ -44,7 +44,8 @@ export function SigninForm() {
   const [errors, setErrors] = useState<FormErrorsT>({});
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl =
+    searchParams.get("callbackUrl") || `{process.env.NEXT_PUBLIC_WEB_URL}`;
   const router = useRouter();
 
   // Create an event handler
@@ -69,7 +70,7 @@ export function SigninForm() {
       const signInResponse = await signIn("credentials", {
         identifier: data.identifier,
         password: data.password,
-        redirect: true,
+        redirect: false,
         callbackUrl,
       });
       if (signInResponse && !signInResponse?.ok) {
@@ -198,7 +199,6 @@ export function SigninForm() {
                   </div>
                 ) : null}
 
-                {/* Add "or" separator with borders */}
                 <div className="flex items-center my-4">
                   <div className="flex-grow border-t border-gray-300"></div>
                   <span className="mx-2 text-gray-500">or</span>
