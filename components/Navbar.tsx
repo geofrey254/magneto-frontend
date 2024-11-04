@@ -5,30 +5,27 @@ import {
   MdOutlinePriceCheck,
   MdNotes,
   MdContactPage,
-} from "react-icons/md"; // Importing Material Design icons for use in the navbar
-import { BiSolidFoodMenu } from "react-icons/bi"; // Importing another icon for mobile menu
-import { FaCertificate } from "react-icons/fa6"; // Importing FontAwesome icon for certificate symbol
-import { FaSchool } from "react-icons/fa6"; // Importing FontAwesome icon for school symbol
+} from "react-icons/md";
+import { BiSolidFoodMenu } from "react-icons/bi";
+import { FaCertificate } from "react-icons/fa6";
+import { FaSchool } from "react-icons/fa6";
 import { TbBooks } from "react-icons/tb";
 
-import Link from "next/link"; // Importing Next.js Link component for navigation between pages
+import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { LogoutButton } from "./custom/logout-button";
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(true); // State for controlling the mobile menu's visibility
+  const [menuOpen, setMenuOpen] = useState(true);
 
-  // Toggles the menu state between open and closed
   const handleNav = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Correctly invoke useSession to get session data
   const { data: session } = useSession();
 
   return (
     <nav className="h-[4vh] w-full flex justify-center items-center py-8 px-4 md:px-12">
-      {/* Container for Navbar content */}
       <div className="container flex justify-between items-center">
         {/* Branding Section */}
         <div>
@@ -39,10 +36,9 @@ function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Menu: Hidden on mobile (md:hidden) */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex">
           <ul className="flex gap-8 2xl:gap-12 items-center text-[#350203] font-bold">
-            {/* Links for various sections of the website */}
             <li>
               <Link href="/">Home</Link>
             </li>
@@ -64,7 +60,7 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Mobile Menu (hamburger) */}
+        {/* Mobile Menu */}
         <div
           className={
             menuOpen
@@ -72,7 +68,6 @@ function Navbar() {
               : "fixed mobile_nav w-[90%] left-4 top-16 h-[100%] z-10 transition-all duration-700 ease-linear rounded-3xl shadow-xl shadow-[#8a6445] md:hidden"
           }
         >
-          {/* Buttons for Login and Signup */}
           <div className="flex flex-col gap-6 text-[#f8d6b6]">
             {session && session.user ? (
               <LogoutButton />
@@ -80,7 +75,7 @@ function Navbar() {
               <ul className="flex mt-6 px-4 justify-between">
                 <li>
                   <Link
-                    href="http://localhost:1337/api/connect/google"
+                    href="/signin"
                     onClick={handleNav}
                     className="text-[#f8d6b6] border-2 border-[#f8d6b6] px-8 py-2 rounded-2xl"
                   >
@@ -89,7 +84,7 @@ function Navbar() {
                 </li>
                 <li>
                   <Link
-                    href="/auth"
+                    href="/signup"
                     onClick={handleNav}
                     className="bg-[#f8d6b6] hover:bg-[#facba0] rounded-2xl px-4 py-2 text-[#350203]"
                   >
@@ -98,7 +93,7 @@ function Navbar() {
                 </li>
               </ul>
             )}
-            <hr /> {/* Divider */}
+            <hr />
           </div>
 
           {/* Mobile Navigation Links */}
@@ -156,7 +151,6 @@ function Navbar() {
 
         {/* Right side of the Navbar */}
         <div className="flex">
-          {/* Desktop Login/Join buttons */}
           <div className="hidden md:flex gap-6 justify-center items-center font-semibold">
             {session && session.user ? (
               <LogoutButton />

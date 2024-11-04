@@ -6,10 +6,11 @@ import { useSearchParams } from "next/navigation";
 
 export default function GoogleSignInButton() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl =
+    searchParams.get("callbackUrl") || process.env.NEXT_PUBLIC_WEB_URL;
   return (
     <button
-      className="bg-white flex justify-center items-center gap-4 border border-zinc-300 hover:bg-[#3502033b] hover:text-[#350203] px-8 py-2 rounded-2xl w-full text-zinc-700"
+      className="bg-white flex justify-center items-center gap-4 border border-zinc-300 hover:bg-[#3502033b] hover:text-[#350203] px-4 md:px-8 py-2 rounded-2xl w-full text-zinc-700"
       onClick={() => signIn("google", { callbackUrl: callbackUrl })}
     >
       <span className="text-red-700 mr-2">

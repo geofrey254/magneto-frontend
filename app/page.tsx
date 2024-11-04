@@ -3,7 +3,7 @@ import Jumbotron from "@/components/Jumbotron";
 import Categories from "@/components/Categories";
 import Why from "@/components/Why";
 import Download from "@/components/Download";
-import Pricing from "@/components/Pricing";
+import Pricing from "@/app/subscribe/Pricing";
 import Accordion from "@/components/Accordion";
 import Lessons from "@/components/Lessons";
 

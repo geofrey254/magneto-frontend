@@ -35,18 +35,16 @@ function Chapters({ limit }: ChaptersProps) {
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const res = await fetch(
-          "http://192.168.100.4:1337/api/chapters?populate=*"
-        );
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chapters/`);
         if (!res.ok) {
           throw new Error("Failed to fetch chapters from the database");
         }
         const data = await res.json();
 
-        if (!data.data || data.data.length === 0) {
+        if (!data || data.length === 0) {
           setError("No chapters available in the database.");
         } else {
-          setChapters(data.data);
+          setChapters(data);
         }
       } catch (err) {
         setError(

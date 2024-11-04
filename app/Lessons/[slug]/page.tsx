@@ -1,16 +1,15 @@
 import React from "react";
-import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import Link from "next/link"; // Assuming you're using Next.js for routing
-import { ScrollArea } from "@/components/ui/scroll-area";
+import Markdown from "marked-react";
 
 // Fetch all chapter slugs for static paths generation
 export async function generateStaticParams() {
-  const res = await fetch("http://localhost:1337/api/chapters?populate=*", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/chapters`, {
     next: { revalidate: 1 },
   });
   const data = await res.json();
 
-  return data.data.map((lesson) => ({
+  return data.map((lesson) => ({
     slug: lesson.slug, // Ensure your API returns a slug
   }));
 }
@@ -21,13 +20,13 @@ async function LessonPage({ params }) {
 
   // Fetch the chapter data for the given slug
   const res = await fetch(
-    `http://localhost:1337/api/chapters?filters[slug][$eq]=${slug}&populate=*`,
+    `${process.env.NEXT_PUBLIC_API_URL}/content?slug=${slug}`,
     {
       next: { revalidate: 1 },
     }
   );
   const data = await res.json();
-  const lesson = data.data[0]; // Assuming you fetch one chapter based on the slug
+  const lesson = data.length > 0 ? data[0] : null;
 
   // Handle case when lesson is not found
   if (!lesson) {
@@ -38,7 +37,7 @@ async function LessonPage({ params }) {
     <section className="mx-auto bg-[#f8d6b6] w-full flex flex-col justify-center items-center p-8 md:p-0 md:py-4">
       {/* Breadcrumb Navigation */}
       <div>
-        <nav className="w-full max-w-4xl text-sm mb-4  text-[#350203] rounded-xl p-2 ">
+        <nav className="w-full max-w-4xl text-sm mb-4 text-[#350203] rounded-xl p-2">
           <Link href="/" className="hover:underline">
             Home
           </Link>
@@ -51,10 +50,9 @@ async function LessonPage({ params }) {
         </nav>
       </div>
       <div className="grid grid-cols-12">
-        {" "}
         <div className="col-span-8">
           {/* Lesson Overview */}
-          <div className=" w-full max-w-4xl p-4 mb-6">
+          <div className="w-full max-w-4xl p-4 mb-6">
             <h2 className="text-[#350203] text-5xl font-bold mb-2">
               Lesson Overview
             </h2>
@@ -64,8 +62,8 @@ async function LessonPage({ params }) {
           </div>
 
           {/* Lesson Content */}
-          <div className="text-[#350203] p-4 prose prose-lg prose-img:w-1/2 prose-p:text-[#350203]prose-headings:text-[#350203] prose-strong:text-[#350203] prose-zinc">
-            <BlocksRenderer content={lesson.content} />
+          <div className="text-[#350203] p-4 prose prose-lg prose-img:w-1/2 prose-p:text-[#350203] prose-headings:text-[#350203] prose-strong:text-[#350203] prose-zinc">
+            <Markdown>{lesson.lesson_content}</Markdown>
           </div>
         </div>
         <div className="col-span-2"></div>
