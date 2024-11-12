@@ -63,7 +63,7 @@ async function LessonPage({ params }) {
 
           {/* Lesson Content */}
           <div className="text-[#350203] p-4 prose prose-lg prose-img:w-1/2 prose-p:text-[#350203] prose-headings:text-[#350203] prose-strong:text-[#350203] prose-zinc">
-            <Markdown>{lesson.lesson_content}</Markdown>
+            {lesson.lesson_content}
           </div>
         </div>
         <div className="col-span-2"></div>

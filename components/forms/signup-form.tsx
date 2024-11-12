@@ -1,10 +1,23 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+"use client";
+import { useEffect, useState } from "react";
 import SignUpForm from "./SignUpForm";
 import Link from "next/link";
 
-export default async function SignUp() {
-  const session = await getServerSession(authOptions);
+export default function SignUp() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check if JWT token exists in localStorage or cookies
+    const token = localStorage.getItem("jwtToken");
+
+    if (token) {
+      // Optionally, you can add logic to validate the token (check expiration or decode)
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, []);
+
   return (
     <section>
       <div className="flex flex-col items-center justify-center mx-auto lg:py-6">
@@ -12,7 +25,7 @@ export default async function SignUp() {
           <h2 className="text-center text-2xl text-[#350203] mb-8 font-bold">
             Sign Up
           </h2>
-          {session && session.user ? (
+          {isAuthenticated ? (
             <p className="text-center">You are already signed in.</p>
           ) : (
             <div>

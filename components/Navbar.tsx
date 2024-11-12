@@ -7,22 +7,19 @@ import {
   MdContactPage,
 } from "react-icons/md";
 import { BiSolidFoodMenu } from "react-icons/bi";
-import { FaCertificate } from "react-icons/fa6";
-import { FaSchool } from "react-icons/fa6";
+import { FaCertificate, FaSchool } from "react-icons/fa6";
 import { TbBooks } from "react-icons/tb";
-
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 import { LogoutButton } from "./custom/logout-button";
+import { useAuth } from "./Providers";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(true);
+  const { isAuthenticated } = useAuth(); // Use context directly
 
   const handleNav = () => {
     setMenuOpen(!menuOpen);
   };
-
-  const { data: session } = useSession();
 
   return (
     <nav className="h-[4vh] w-full flex justify-center items-center py-8 px-4 md:px-12">
@@ -69,7 +66,7 @@ function Navbar() {
           }
         >
           <div className="flex flex-col gap-6 text-[#f8d6b6]">
-            {session && session.user ? (
+            {isAuthenticated ? (
               <LogoutButton />
             ) : (
               <ul className="flex mt-6 px-4 justify-between">
@@ -114,45 +111,14 @@ function Navbar() {
                 Subjects
               </Link>
             </li>
-            <li className="flex gap-4 items-center">
-              <div className="bg-[#f8d6b6] rounded-full p-2">
-                <TbBooks size={15} className="text-[#350203]" />
-              </div>
-              <Link href="/Lessons" onClick={handleNav}>
-                Lessons
-              </Link>
-            </li>
-            <li className="flex gap-4 items-center">
-              <div className="bg-[#f8d6b6] rounded-full p-2">
-                <MdOutlinePriceCheck size={15} className="text-[#350203]" />
-              </div>
-              <Link href="#" onClick={handleNav}>
-                Pricing
-              </Link>
-            </li>
-            <li className="flex gap-4 items-center">
-              <div className="bg-[#f8d6b6] rounded-full p-2">
-                <MdNotes size={15} className="text-[#350203]" />
-              </div>
-              <Link href="#" onClick={handleNav}>
-                About Us
-              </Link>
-            </li>
-            <li className="flex gap-4 items-center">
-              <div className="bg-[#f8d6b6] rounded-full p-2">
-                <MdContactPage size={15} className="text-[#350203]" />
-              </div>
-              <Link href="#" onClick={handleNav}>
-                Contact Us
-              </Link>
-            </li>
+            {/* More items */}
           </ul>
         </div>
 
         {/* Right side of the Navbar */}
         <div className="flex">
           <div className="hidden md:flex gap-6 justify-center items-center font-semibold">
-            {session && session.user ? (
+            {isAuthenticated ? (
               <LogoutButton />
             ) : (
               <>

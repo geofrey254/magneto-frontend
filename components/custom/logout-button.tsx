@@ -1,11 +1,16 @@
 "use client";
 
 import { LogOut } from "lucide-react";
-import { signOut } from "next-auth/react"; // Import NextAuth signOut
+import { useAuth } from "../Providers";
 
 export function LogoutButton() {
-  const handleLogout = async () => {
-    await signOut(); // For NextAuth logouts, it automatically handles session and redirection
+  const { setAuthenticated, checkAuthentication } = useAuth();
+
+  const handleLogout = () => {
+    document.cookie =
+      "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC; secure; samesite=strict";
+    setAuthenticated(false);
+    checkAuthentication();
   };
 
   return (
