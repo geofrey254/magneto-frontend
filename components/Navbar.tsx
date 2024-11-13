@@ -20,6 +20,7 @@ function Navbar() {
   const handleNav = () => {
     setMenuOpen(!menuOpen);
   };
+  console.log(isAuthenticated);
 
   return (
     <nav className="h-[4vh] w-full flex justify-center items-center py-8 px-4 md:px-12">

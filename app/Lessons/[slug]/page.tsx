@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link"; // Assuming you're using Next.js for routing
-import Markdown from "marked-react";
 
 // Fetch all chapter slugs for static paths generation
 export async function generateStaticParams() {
@@ -62,8 +61,11 @@ async function LessonPage({ params }) {
           </div>
 
           {/* Lesson Content */}
-          <div className="text-[#350203] p-4 prose prose-lg prose-img:w-1/2 prose-p:text-[#350203] prose-headings:text-[#350203] prose-strong:text-[#350203] prose-zinc">
-            {lesson.lesson_content}
+          <div className="text-[#350203] p-4  prose-img:w-1/2 prose-p:text-[#350203] prose-headings:text-[#350203] prose-strong:text-[#350203] prose-zinc">
+            <div
+              className="prose prose-md "
+              dangerouslySetInnerHTML={{ __html: lesson.lesson_content }}
+            />
           </div>
         </div>
         <div className="col-span-2"></div>

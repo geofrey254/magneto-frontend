@@ -101,7 +101,7 @@ export function Subjects() {
 
                   <div className="rounded">
                     <Link
-                      href={`/subjects?slug=${sub.slug}`}
+                      href={`/subjects/${sub.slug}`}
                       className="bg-[#350203] rounded-2xl px-4 py-1 text-xs text-[#f8d6b6] text-center"
                     >
                       Start

@@ -7,6 +7,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import PendingSubmitButton from "../custom/PendingSubmitButton";
 import GoogleSignInButton from "../custom/Googlebtn";
 import GoogleSignInError from "../custom/GoogleSignInError";
+import { useAuth } from "../Providers";
 
 // Zod schema for validation
 const SignUpSchema = z
@@ -31,10 +32,14 @@ type SignUpFormData = z.infer<typeof SignUpSchema>;
 
 export default function SignUpForm() {
   const router = useRouter();
+  const { setAuthenticated, setToken } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formErrors, setFormErrors] = useState<Partial<SignUpFormData>>({});
   const [serverError, setServerError] = useState<string | null>(null);
+  const isPasswordSimilarToEmail = (password: string, email: string) => {
+    return password.includes(email.split("@")[0]);
+  };
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
   const toggleConfirmPasswordVisibility = () =>
@@ -62,7 +67,7 @@ export default function SignUpForm() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_AUTH}auth/registration/`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/registration/`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -76,29 +81,28 @@ export default function SignUpForm() {
       );
 
       if (response.ok) {
-        const data = await response.json();
-        const accessToken = data.accessToken; // Assuming the response contains an accessToken
-
-        // Call the session API to store the access token in cookies
-        const sessionResponse = await fetch("/api/session", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ accessToken }),
-        });
-
-        if (sessionResponse.ok) {
-          router.push("/");
-        } else {
-          setServerError("Failed to create session.");
-        }
+        // Handle success
+        const responseData = await response.json();
+        const token = responseData.access;
+        document.cookie = `token=${token}; path=/; max-age=1800; secure; samesite=strict`;
+        setAuthenticated(true);
+        setToken(token);
+        router.push("/");
       } else {
         const errorData = await response.json();
+        console.log("Error response:", errorData); // Log the error for more insights
         setServerError(
           errorData.message || "Cannot sign up, please try again."
         );
       }
     } catch (error) {
+      console.error("Sign-up error:", error);
       setServerError("An unexpected error occurred. Please try again.");
+    }
+
+    if (isPasswordSimilarToEmail(formData.password, formData.email)) {
+      setServerError("The password is too similar to the email address.");
+      return; // Prevent form submission
     }
   }
 
