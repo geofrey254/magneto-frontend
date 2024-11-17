@@ -2,19 +2,25 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/components/Providers";
 
+interface Plan {
+  id: number;
+  name: string;
+  price: number;
+}
+
 export default function SubscriptionForm() {
-  const [plans, setPlans] = useState([]);
+  const [plans, setPlans] = useState<Plan[]>([]);
   const { isAuthenticated, checkAuthentication } = useAuth();
-  const [planId, setPlanId] = useState(plans[0]?.id || "");
+  const [planId, setPlanId] = useState<number | null>(null);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     checkAuthentication(); // Ensure authentication is checked when the component mounts
-  }, []);
+  }, [checkAuthentication]);
 
   useEffect(() => {
     async function fetchPlans() {
@@ -27,8 +33,13 @@ export default function SubscriptionForm() {
         }
         const data = await response.json();
         setPlans(data);
+        if (data.length > 0) {
+          setPlanId(data[0].id); // Set the first plan as default
+        }
       } catch (error) {
-        setError(error.message);
+        if (error instanceof Error) {
+          setError(error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -59,6 +70,7 @@ export default function SubscriptionForm() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           plan_id: planId,
           phone_number: phoneNumber,
@@ -79,7 +91,13 @@ export default function SubscriptionForm() {
   };
 
   return (
-    <div style={styles.container}>
+    <form
+      style={styles.container}
+      onSubmit={(e) => {
+        e.preventDefault(); // Prevent default form submission behavior
+        handleSubscription();
+      }}
+    >
       <h2>Subscribe to a Plan</h2>
 
       <label htmlFor="plan" style={styles.label}>
@@ -87,8 +105,8 @@ export default function SubscriptionForm() {
       </label>
       <select
         id="plan"
-        value={planId}
-        onChange={(e) => setPlanId(e.target.value)}
+        value={planId || ""}
+        onChange={(e) => setPlanId(Number(e.target.value) || null)}
         style={styles.select}
       >
         {plans.map((plan) => (
@@ -109,10 +127,11 @@ export default function SubscriptionForm() {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
         style={styles.input}
+        required // Ensures the input is required
       />
 
       <button
-        onClick={handleSubscription}
+        type="submit"
         disabled={isLoading}
         style={styles.button(isLoading)}
       >
@@ -129,7 +148,7 @@ export default function SubscriptionForm() {
           {message}
         </p>
       )}
-    </div>
+    </form>
   );
 }
 

@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const setToken = (token: string) => {
-    document.cookie = `access=${token}; path=/; max-age=1800; secure=${
+    document.cookie = `access=${token}; path=/; max-age=1800; HttpOnly; secure=${
       process.env.NODE_ENV === "production"
     }; samesite=strict`; // Set token as a cookie
     checkAuthentication(); // Re-check after setting the token
@@ -54,18 +54,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  useEffect(() => {
-    checkAuthentication(); // Perform authentication check on component mount
-  }, []);
-
   // Function to check authentication based on the token
   const checkAuthentication = async () => {
     const token = document.cookie
       .split("; ")
       .find((row) => row.startsWith("access="))
       ?.split("=")[1];
-
-    console.log("Token from cookies:", token); // Log token for debugging
 
     if (token) {
       try {

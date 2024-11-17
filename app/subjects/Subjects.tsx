@@ -42,7 +42,9 @@ export function Subjects() {
         const data = await res.json();
         setSubjects(data);
       } catch (err) {
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message);
+        }
       } finally {
         setLoading(false);
       }
