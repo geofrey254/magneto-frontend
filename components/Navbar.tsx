@@ -1,11 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {
-  MdOutlineMenuBook,
-  MdOutlinePriceCheck,
-  MdNotes,
-  MdContactPage,
-} from "react-icons/md";
+import { MdOutlineMenuBook } from "react-icons/md";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import { FaCertificate, FaSchool } from "react-icons/fa6";
 import { TbBooks } from "react-icons/tb";

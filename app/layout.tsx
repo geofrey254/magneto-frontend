@@ -3,6 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/components/Providers";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Magneto - Unlock Learning, One Day at a Time",
@@ -19,9 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-Poppins font-medium">
         <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <Suspense fallback={<Loading />}>
+            <Navbar />
+            {children}
+            <Footer />
+          </Suspense>
         </AuthProvider>
       </body>
     </html>

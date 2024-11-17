@@ -6,6 +6,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
+import Loading from "@/app/loading";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -139,11 +140,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         refreshAccessToken,
       }}
     >
-      {isAuthChecking ? (
-        <div>Loading...</div> // Optionally show loading while checking auth
-      ) : (
-        children
-      )}
+      {isAuthChecking ? <Loading /> : children}
     </AuthContext.Provider>
   );
 };
