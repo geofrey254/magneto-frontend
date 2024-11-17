@@ -2,16 +2,42 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/components/Providers";
 
-export default function SubscriptionForm({ plans }) {
+export default function SubscriptionForm() {
+  const [plans, setPlans] = useState([]);
   const { isAuthenticated, checkAuthentication } = useAuth();
   const [planId, setPlanId] = useState(plans[0]?.id || "");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     checkAuthentication(); // Ensure authentication is checked when the component mounts
   }, []);
+
+  useEffect(() => {
+    async function fetchPlans() {
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/api/subscription_plan"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch subscription plans.");
+        }
+        const data = await response.json();
+        setPlans(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPlans();
+  }, []);
+  if (loading) return <p>Loading plans...</p>;
+  if (error) return <p>{error}</p>;
 
   const handleSubscription = async () => {
     if (!isAuthenticated) {

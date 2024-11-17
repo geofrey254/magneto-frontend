@@ -47,7 +47,7 @@ function Navbar() {
               <Link href="/Lessons">Lessons</Link>
             </li>
             <li>
-              <Link href="#">Pricing</Link>
+              <Link href="/subscription">Pricing</Link>
             </li>
             <li>
               <Link href="#">About Us</Link>
